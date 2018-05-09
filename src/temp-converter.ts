@@ -1,8 +1,4 @@
 export function convertCtoF(tempInC: number) {
-  if (tempInC === 0) {
-    return 32;
-  } else if (tempInC === 100) {
-    return 212;
-  }
-  return tempInC;
+  const tempInF = tempInC * 9 / 5 + 32;
+  return tempInF;
 }
