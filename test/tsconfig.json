@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "es6"
+    ],
+    "alwaysStrict": false,
+    "strictNullChecks": false,
+    "noImplicitAny": false
+  }
+}
