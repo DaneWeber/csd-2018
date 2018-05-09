@@ -20,3 +20,16 @@
 * Independent of configuration, isolated from other objects
 * Doesn't talk to database, file system, network
 * Should run in under a second
+* 3-4x or more test code as production code
+
+### Unit Test F.I.R.S.T.
+
+* Fast (<1 second per test)
+* Isolated (Arrange, Act, Assert; only needs the Class Under Test)
+* Repeatable (all necessary setup/teardown; no traces left)
+* Self-Verifying ('pass' should be good enough)
+* Timely (written at the same time as the code)
+
+## Javascript Notes
+
+* Jasmine - [https://jasmine.github.io/]
