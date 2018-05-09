@@ -32,12 +32,27 @@ describe("VendingMachine", () => {
       // Assert
       expect(dispensedProduct).toBeFalsy();
     });
-    it("should return a product when money is inserted", () => {
+    it("should return a product when sufficient money is inserted", () => {
+      // Arrange
+      let vendingMachine = new VendingMachine();
+      vendingMachine.insertCents(50);
+
+      // Act
+      const product = vendingMachine.buyProduct();
+
+      // Assert
+      expect(product).toBeTruthy();
+    });
+    it("should return nothing when insufficient money is inserted", () => {
+      // Arrange
       let vendingMachine = new VendingMachine();
       vendingMachine.insertCents(25);
 
+      // Act
       const product = vendingMachine.buyProduct();
-      expect(product).toBe("snickers");
+
+      // Assert
+      expect(product).toBeFalsy();
     });
   });
 });
