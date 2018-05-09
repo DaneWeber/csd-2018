@@ -15,5 +15,9 @@ describe("TempConverter", function () {
             var result = temp_converter_1.convertCtoF(-40);
             expect(result).toEqual(-40);
         });
+        it("should return 98.6f given 37c", function () {
+            var result = temp_converter_1.convertCtoF(37);
+            expect(result).toEqual(98.6);
+        });
     });
 });
