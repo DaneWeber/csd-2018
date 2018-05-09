@@ -2,14 +2,35 @@
   "name": "csd-2018",
   "version": "1.0.0",
   "description": "Exercises for Certified Scrum Developer course (2018).",
-  "main": "index.js",
+  "main": "./lib/index.js",
   "scripts": {
-    "test": "xyz"
+    "build:commonjs": "rimraf lib && tsc --target es5 --outDir lib --module commonjs --declaration",
+    "build:es": "rimraf es && tsc --target es6 --outDir es --module es6",
+    "build": "npm run build:commonjs && npm run build:es",
+    "ts": "ts-node src/",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/daneweber/csd-2018"
+    "url": "git+https://github.com/daneweber/csd-2018.git"
   },
   "author": "Dane J. Weber",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daneweber/csd-2018/issues"
+  },
+  "homepage": "https://github.com/daneweber/csd-2018#readme",
+  "keywords": [],
+  "devDependencies": {
+    "rimraf": "^2.6.2",
+    "ts-node": "^6.0.3",
+    "typescript": "^2.8.3"
+  },
+  "files": [
+    "es",
+    "lib"
+  ],
+  "types": "./lib/index.d.ts",
+  "jsnext:main": "./es/index.js",
+  "module": "./es/index.js"
 }
