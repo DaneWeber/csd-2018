@@ -21,6 +21,7 @@
 * Doesn't talk to database, file system, network
 * Should run in under a second
 * 3-4x or more test code as production code
+* Start _extremely_ simple
 
 ### Unit Test F.I.R.S.T.
 
