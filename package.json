@@ -9,6 +9,9 @@
     "build:commonjs": "rimraf lib && tsc --target es5 --outDir lib --module commonjs --declaration",
     "build:es": "rimraf es && tsc --target es6 --outDir es --module es6",
     "build": "npm run build:commonjs && npm run build:es",
+    "build:test": "tsc -p test",
+    "pretest": "npm run build:commonjs && npm run build:test",
+    "test": "jasmine --config=./jasmine.json",
     "ts": "ts-node src/",
     "prepublishOnly": "npm run build"
   },
