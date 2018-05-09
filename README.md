@@ -31,6 +31,11 @@
 * Self-Verifying ('pass' should be good enough)
 * Timely (written at the same time as the code)
 
+### As you build up unit tests
+
+* If you test that a.x() succeeds in one test, and a test of a.y() depends on that, don't duplicate the Assert about a.x() in the a.y() test, just expect it to work.
+* When a test fails because it assumed things not true, fix the test (don't just delete).
+
 ## Javascript Notes
 
 * Jasmine - [https://jasmine.github.io/]

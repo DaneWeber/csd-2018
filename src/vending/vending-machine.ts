@@ -11,6 +11,7 @@ export class VendingMachine {
 
   buyProduct(): string {
     if (this._currentAmount >= 50) {
+      this._currentAmount -= 50;
       return "snickers";
     }
     return "";
