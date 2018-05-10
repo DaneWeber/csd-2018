@@ -2,7 +2,7 @@ export class PaymentProcessor {
   private _currentAmount = 0;
 
   acceptPayment(centsInserted: number) {
-    this._currentAmount = centsInserted;
+    this._currentAmount += centsInserted;
   }
 
   disburse(): number {

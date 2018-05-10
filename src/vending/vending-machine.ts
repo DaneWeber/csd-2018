@@ -1,7 +1,7 @@
 import { PaymentProcessor } from "./payment-processor";
 
 export class VendingMachine {
-  private payments = new PaymentProcessor();
+  constructor(private payments = new PaymentProcessor()) {}
 
   releaseChange() {
     const refund = this.payments.disburse();

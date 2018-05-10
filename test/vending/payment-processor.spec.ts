@@ -22,6 +22,16 @@ describe("PaymentProcessor", () => {
       // Assert
       expect(refund).toEqual(centsInserted);
     });
+    it("should disburse the sum of multiple payments", () => {
+      // Arrange
+      const processor = new PaymentProcessor();
+      const expectedCentsInserted = 100;
+      // Act
+      for (let i = 0; i < 4; i++) processor.acceptPayment(25);
+      const refund = processor.disburse();
+      // Assert
+      expect(refund).toEqual(expectedCentsInserted);
+    });
   });
   describe("processPurchase", () => {
     it("should disburse remainder after a purchase", () => {
