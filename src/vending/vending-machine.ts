@@ -1,19 +1,19 @@
+import { PaymentProcessor } from "./payment-processor";
+
 export class VendingMachine {
-  private _currentAmount = 0;
+  private payments = new PaymentProcessor();
 
   releaseChange() {
-    const refund = this._currentAmount;
-    this._currentAmount = 0;
+    const refund = this.payments.disburse();
     return refund;
   }
 
   insertCents(centsInserted: number) {
-    this._currentAmount = centsInserted;
+    this.payments.acceptPayment(centsInserted);
   }
 
   buyProduct(): string {
-    if (this._currentAmount >= 50) {
-      this._currentAmount -= 50;
+    if (this.payments.processPurchase()) {
       return "snickers";
     }
     return "";
