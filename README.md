@@ -53,7 +53,49 @@ _Recommended reading: Clean Code_
 
 * Only one (business) reason for a class to change.
 * Think of stakeholders who will request/demand/trigger a change.
+* Avoid surprising changes. If tax law changes, I'd hope to see a Tax class change, not a Billing or Invoice class change.
+* _Move methods out of a class into related classes._
 
-## Javascript Notes
+### O -- Open Closed Principle
+
+* "Open for extension"
+* "Closed for modification"
+* Create multiple classes that inherit from a common parent.
+* Avoid configuration options in a Class.
+* Different behavior belongs in a different Class.
+* _Move branched behavior into sub-classes._
+
+### L -- Liskov Substitution Principle
+
+* X
+* _Fix..._
+
+### I -- Interface Segregation Principle
+
+* Split up interfaces so that clients can use a portion and combine as needed.
+* _Fix..._
+
+### D -- Dependency Inversion Principle
+
+* "Don't call me, I'll call you."
+* Don't "hard-code" your dependencies.
+* Use an abstraction.
+* _Pass the dependency as an argument to construction_
+
+```typescript
+// Good:
+export class Invoice {
+  constructor(private logger?: ILogger = new FileLogger()) {}
+
+  print() {
+    this.logger.log("logging message");
+  }
+}
+
+// Usage:
+const myInvoice = new Invoice(ConsoleLogger);
+```
+
+## Typescript/Javascript Notes
 
 * Jasmine - [https://jasmine.github.io/]
