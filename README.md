@@ -41,11 +41,13 @@
 
 _Recommended reading: Clean Code_
 
-| S | R | P | Single Responsibility Principle |
-| O | C | P | Open Closed Principle |
-| L | S | P | Liskov Substitution Principle |
-| I | S | P | Interface Segregation Principle |
-| D | I | P | Dependency Inversion Principle |
+|     |     |     |                                 |
+| --- | --- | --- | ------------------------------- |
+| S   | R   | P   | Single Responsibility Principle |
+| O   | C   | P   | Open Closed Principle           |
+| L   | S   | P   | Liskov Substitution Principle   |
+| I   | S   | P   | Interface Segregation Principle |
+| D   | I   | P   | Dependency Inversion Principle  |
 
 ### S -- Single Responsibility Principle
 
