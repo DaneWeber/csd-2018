@@ -9,14 +9,14 @@ describe("VendingMachine", () => {
   });
 
   describe("refundChange", () => {
-    it("refunds nothing when no money has been given", () => {
+    xit("refunds nothing when no money has been given", () => {
       // Arrange
       // Act
       const result = vendingMachine.releaseChange();
       // Assert
       expect(result).toEqual(0);
     });
-    it("refunds all money given", () => {
+    xit("refunds all money given", () => {
       // Arrange
       const centsInserted = 25;
       vendingMachine.insertCents(centsInserted);
@@ -25,7 +25,7 @@ describe("VendingMachine", () => {
       // Assert
       expect(centsReturned).toEqual(centsInserted);
     });
-    it("should return 25 when too much money is inserted and product is purchased", () => {
+    xit("should return 25 when too much money is inserted and product is purchased", () => {
       // Arrange
       vendingMachine.insertCents(75);
       vendingMachine.buyProduct();

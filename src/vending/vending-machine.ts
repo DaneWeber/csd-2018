@@ -13,7 +13,8 @@ export class VendingMachine {
   }
 
   buyProduct(): string {
-    if (this.payments.processPurchase()) {
+    if (this.payments.isPaymentSufficient(50)) {
+      this.payments.processPurchase(50);
       return "snickers";
     }
     return "";

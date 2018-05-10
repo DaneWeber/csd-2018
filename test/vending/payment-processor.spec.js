@@ -43,10 +43,21 @@ describe("PaymentProcessor", function () {
             var processor = new payment_processor_1.PaymentProcessor();
             // Act
             processor.acceptPayment(75);
-            processor.processPurchase();
+            processor.processPurchase(50);
             var refund = processor.disburse();
             // Assert
             expect(refund).toEqual(25);
+        });
+    });
+    describe("isPaymentSufficient", function () {
+        it("should be true if there are enough current funds", function () {
+            // Arrange
+            var processor = new payment_processor_1.PaymentProcessor();
+            // Act
+            processor.acceptPayment(75);
+            var check = processor.isPaymentSufficient(50);
+            // Assert
+            expect(check).toEqual(true);
         });
     });
 });

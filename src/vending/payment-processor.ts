@@ -11,11 +11,11 @@ export class PaymentProcessor {
     return refund;
   }
 
-  processPurchase(): boolean {
-    if (this._currentAmount >= 50) {
-      this._currentAmount -= 50;
-      return true;
-    }
-    return false;
+  processPurchase(price: number) {
+    this._currentAmount -= price;
+  }
+
+  isPaymentSufficient(price: number): boolean {
+    return this._currentAmount >= price;
   }
 }

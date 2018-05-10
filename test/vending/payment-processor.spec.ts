@@ -42,10 +42,21 @@ describe("PaymentProcessor", () => {
       const processor = new PaymentProcessor();
       // Act
       processor.acceptPayment(75);
-      processor.processPurchase();
+      processor.processPurchase(50);
       const refund = processor.disburse();
       // Assert
       expect(refund).toEqual(25);
+    });
+  });
+  describe("isPaymentSufficient", () => {
+    it("should be true if there are enough current funds", () => {
+      // Arrange
+      const processor = new PaymentProcessor();
+      // Act
+      processor.acceptPayment(75);
+      const check = processor.isPaymentSufficient(50);
+      // Assert
+      expect(check).toEqual(true);
     });
   });
 });
