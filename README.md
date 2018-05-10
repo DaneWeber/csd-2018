@@ -131,6 +131,17 @@ let differentInvoice = new Invoice(new DbLogger());
 differentInvoice.print();
 ```
 
+## Test Doubles
+
+1.  Dummy Object - simply exists.
+2.  Test Stub - hard-coded response.
+3.  Mock Object - programmatic response.
+4.  Fake Object - light-weight implementation (SQLite instead of Postgres).
+5.  Test Spy - reports back on what the code did.
+
+* Use a test double ('mock') when you need speed or ....
+
 ## Typescript/Javascript Notes
 
 * Jasmine - [https://jasmine.github.io/]
+* Jasmine 2 Spy Cheat Sheet - https://daveceddia.com/jasmine-2-spy-cheat-sheet/
