@@ -35,6 +35,22 @@
 
 * If you test that a.x() succeeds in one test, and a test of a.y() depends on that, don't duplicate the Assert about a.x() in the a.y() test, just expect it to work.
 * When a test fails because it assumed things not true, fix the test (don't just delete).
+* Refactor your tests, but don't remove or consolidate test cases.
+
+## S.O.L.I.D. Principles
+
+_Recommended reading: Clean Code_
+
+| S | R | P | Single Responsibility Principle |
+| O | C | P | Open Closed Principle |
+| L | S | P | Liskov Substitution Principle |
+| I | S | P | Interface Segregation Principle |
+| D | I | P | Dependency Inversion Principle |
+
+### S -- Single Responsibility Principle
+
+* Only one (business) reason for a class to change.
+* Think of stakeholders who will request/demand/trigger a change.
 
 ## Javascript Notes
 
