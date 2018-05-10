@@ -2,7 +2,9 @@ export class VendingMachine {
   private _currentAmount = 0;
 
   releaseChange() {
-    return this._currentAmount;
+    const refund = this._currentAmount;
+    this._currentAmount = 0;
+    return refund;
   }
 
   insertCents(centsInserted: number) {
