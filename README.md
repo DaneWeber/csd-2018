@@ -85,7 +85,9 @@ _Recommended reading: Clean Code_
 ```typescript
 // Good:
 export class Invoice {
-  constructor(private logger?: ILogger = new FileLogger()) {}
+  constructor(private logger?: ILogger = new FileLogger()) {
+    // Not sure about this TypeScript syntax
+  }
 
   print() {
     this.logger.log("logging message");
