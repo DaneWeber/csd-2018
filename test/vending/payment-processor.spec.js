@@ -11,6 +11,16 @@ describe("PaymentProcessor", function () {
             // Assert
             expect(refund).toEqual(0);
         });
+        it("should disburse nothing after the first disbursement", function () {
+            // Arrange
+            var processor = new payment_processor_1.PaymentProcessor();
+            processor.acceptPayment(25);
+            processor.disburse();
+            // Act
+            var refund = processor.disburse();
+            // Assert
+            expect(refund).toEqual(0);
+        });
     });
     describe("acceptPayment", function () {
         it("should disburse all payment accepted", function () {
@@ -50,7 +60,7 @@ describe("PaymentProcessor", function () {
         });
     });
     describe("isPaymentSufficient", function () {
-        it("should be true if there are enough current funds", function () {
+        it("should be true if there are more than enough funds", function () {
             // Arrange
             var processor = new payment_processor_1.PaymentProcessor();
             // Act
@@ -58,6 +68,24 @@ describe("PaymentProcessor", function () {
             var check = processor.isPaymentSufficient(50);
             // Assert
             expect(check).toEqual(true);
+        });
+        it("should be true if there are exact funds", function () {
+            // Arrange
+            var processor = new payment_processor_1.PaymentProcessor();
+            // Act
+            processor.acceptPayment(50);
+            var check = processor.isPaymentSufficient(50);
+            // Assert
+            expect(check).toEqual(true);
+        });
+        it("should be false if there are insufficient funds", function () {
+            // Arrange
+            var processor = new payment_processor_1.PaymentProcessor();
+            // Act
+            processor.acceptPayment(25);
+            var check = processor.isPaymentSufficient(50);
+            // Assert
+            expect(check).toEqual(false);
         });
     });
 });

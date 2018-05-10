@@ -10,6 +10,16 @@ describe("PaymentProcessor", () => {
       // Assert
       expect(refund).toEqual(0);
     });
+    it("should disburse nothing after the first disbursement", () => {
+      // Arrange
+      const processor = new PaymentProcessor();
+      processor.acceptPayment(25);
+      processor.disburse();
+      // Act
+      const refund = processor.disburse();
+      // Assert
+      expect(refund).toEqual(0);
+    });
   });
   describe("acceptPayment", () => {
     it("should disburse all payment accepted", () => {
@@ -49,7 +59,7 @@ describe("PaymentProcessor", () => {
     });
   });
   describe("isPaymentSufficient", () => {
-    it("should be true if there are enough current funds", () => {
+    it("should be true if there are more than enough funds", () => {
       // Arrange
       const processor = new PaymentProcessor();
       // Act
@@ -57,6 +67,24 @@ describe("PaymentProcessor", () => {
       const check = processor.isPaymentSufficient(50);
       // Assert
       expect(check).toEqual(true);
+    });
+    it("should be true if there are exact funds", () => {
+      // Arrange
+      const processor = new PaymentProcessor();
+      // Act
+      processor.acceptPayment(50);
+      const check = processor.isPaymentSufficient(50);
+      // Assert
+      expect(check).toEqual(true);
+    });
+    it("should be false if there are insufficient funds", () => {
+      // Arrange
+      const processor = new PaymentProcessor();
+      // Act
+      processor.acceptPayment(25);
+      const check = processor.isPaymentSufficient(50);
+      // Assert
+      expect(check).toEqual(false);
     });
   });
 });
