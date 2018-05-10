@@ -26,13 +26,15 @@ describe("PaymentProcessor", function () {
         it("should disburse the sum of multiple payments", function () {
             // Arrange
             var processor = new payment_processor_1.PaymentProcessor();
-            var expectedCentsInserted = 100;
+            var expectedRefund = 100;
             // Act
-            for (var i = 0; i < 4; i++)
-                processor.acceptPayment(25);
+            processor.acceptPayment(25);
+            processor.acceptPayment(25);
+            processor.acceptPayment(25);
+            processor.acceptPayment(25);
             var refund = processor.disburse();
             // Assert
-            expect(refund).toEqual(expectedCentsInserted);
+            expect(refund).toEqual(expectedRefund);
         });
     });
     describe("processPurchase", function () {
