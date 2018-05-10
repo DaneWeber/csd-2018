@@ -50,8 +50,8 @@ describe("PaymentProcessor", () => {
     it("should disburse remainder after a purchase", () => {
       // Arrange
       const processor = new PaymentProcessor();
-      // Act
       processor.acceptPayment(75);
+      // Act
       processor.processPurchase(50);
       const refund = processor.disburse();
       // Assert

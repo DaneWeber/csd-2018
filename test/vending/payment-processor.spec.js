@@ -51,8 +51,8 @@ describe("PaymentProcessor", function () {
         it("should disburse remainder after a purchase", function () {
             // Arrange
             var processor = new payment_processor_1.PaymentProcessor();
-            // Act
             processor.acceptPayment(75);
+            // Act
             processor.processPurchase(50);
             var refund = processor.disburse();
             // Assert

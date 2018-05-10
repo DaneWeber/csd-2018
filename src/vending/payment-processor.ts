@@ -1,8 +1,12 @@
+import { IPiggyBank } from "./piggy-bank-stub";
+
 export class PaymentProcessor {
-  private _currentAmount = 0;
+  // private _currentAmount = 0;
+  private piggyBank: IPiggyBank;
 
   acceptPayment(centsInserted: number) {
-    this._currentAmount += centsInserted;
+    this.piggyBank.deposit(centsInserted);
+    // this._currentAmount += centsInserted;
   }
 
   disburse(): number {
