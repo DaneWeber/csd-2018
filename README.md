@@ -13,6 +13,15 @@
 2.  You may not write more of a unit test than is sufficient to fail, and not compiling is failing.
 3.  You may not write more production code than is sufficient to pass the currently failing test.
 
+## Testing Quadrant
+
+|                     |                         | Business Facing   |                                   |                  |
+| ------------------- | ----------------------- | ----------------- | --------------------------------- | ---------------- |
+|                     | Functional, Acceptance  | ^^                | Showcases, Exploratory, Usability |                  |
+| Support Programming | - - - - - - - - - - - - | ++                | - - - - - - - - - - - - - - - - - | Critique Product |
+|                     | Unit, Component, System | vv                | Performance, Security             |                  |
+|                     |                         | Technology Facing |                                   |                  |
+
 ## Unit Testing
 
 * Code written by the developer to test production code.
@@ -163,6 +172,36 @@ differentInvoice.print();
 8.  Rollback transaction (opened above)
 9.  Delete data
 10. Destroy database
+
+## Acceptance Tests
+
+* No human should have to follow a script.
+* Gherkin should be written by the business people responsible for writing user stories.
+* Developers write the code glue to write interpretations of the Gherkin.
+* Testing should not be a phase that follows development, but part of the development process that is done when development is done.
+
+### Gherkin Feature File
+
+**Feature:** Buy Product<br/>
+_As a vending machine customer,_<br/>
+_I want to buy products_<br/>
+_So that I can enjoy a tasty treat._
+
+**Background:** I am at the vending machine.
+
+**Scenario:** Buy a product from the vending machine<br/>
+Given I have inserted a quarter<br/>
+When I purchase the product<br/>
+Then I should receive the product
+
+### ATDD Cycle
+
+1.  Scenario step fails
+2.  Create failing unit test
+3.  Implement production code
+4.  Unit test passes
+5.  Scenario step passes
+6.  Next scenario step fails
 
 ## Typescript/Javascript Notes
 
