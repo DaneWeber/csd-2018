@@ -1,25 +1,23 @@
 import { IPiggyBank } from "./piggy-bank-stub";
 
 export class PaymentProcessor {
-  // private _currentAmount = 0;
-  private piggyBank: IPiggyBank;
+  constructor(private piggyBank: IPiggyBank) {}
 
   acceptPayment(centsInserted: number) {
     this.piggyBank.deposit(centsInserted);
-    // this._currentAmount += centsInserted;
   }
 
   disburse(): number {
-    const refund = this._currentAmount;
-    this._currentAmount = 0;
+    const refund = this.piggyBank.balance();
+    this.piggyBank.withdraw(refund);
     return refund;
   }
 
-  processPurchase(price: number) {
-    this._currentAmount -= price;
+  isPaymentSufficient(price: number): boolean {
+    return this.piggyBank.balance() >= price;
   }
 
-  isPaymentSufficient(price: number): boolean {
-    return this._currentAmount >= price;
+  processPurchase(price: number) {
+    this.piggyBank.withdraw(price);
   }
 }

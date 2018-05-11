@@ -2,88 +2,86 @@
 exports.__esModule = true;
 var payment_processor_1 = require("../../lib/vending/payment-processor");
 describe("PaymentProcessor", function () {
+    var piggyBankMock;
+    var payProc;
+    beforeEach(function (done) {
+        piggyBankMock = jasmine.createSpyObj("piggyBank", [
+            "withdraw",
+            "deposit",
+            "balance"
+        ]);
+        payProc = new payment_processor_1.PaymentProcessor(piggyBankMock);
+        done();
+    });
     describe("disburse", function () {
-        it("should disburse nothing when no payment has been given", function () {
+        it("should disburse nothing when the piggyBank is empty", function () {
             // Arrange
-            var processor = new payment_processor_1.PaymentProcessor();
+            piggyBankMock.balance.and.returnValue(0);
             // Act
-            var refund = processor.disburse();
+            var refund = payProc.disburse();
             // Assert
             expect(refund).toEqual(0);
         });
-        it("should disburse nothing after the first disbursement", function () {
+        it("should disburse whatever amount is in the piggyBank", function () {
             // Arrange
-            var processor = new payment_processor_1.PaymentProcessor();
-            processor.acceptPayment(25);
-            processor.disburse();
+            var coinsInserted = 25;
+            piggyBankMock.balance.and.returnValue(coinsInserted);
             // Act
-            var refund = processor.disburse();
+            var refund = payProc.disburse();
             // Assert
-            expect(refund).toEqual(0);
+            expect(refund).toEqual(coinsInserted);
         });
     });
     describe("acceptPayment", function () {
-        it("should disburse all payment accepted", function () {
+        it("should send payment to the piggyBank", function () {
             // Arrange
-            var processor = new payment_processor_1.PaymentProcessor();
             var centsInserted = 25;
+            piggyBankMock.deposit;
             // Act
-            processor.acceptPayment(centsInserted);
-            var refund = processor.disburse();
+            payProc.acceptPayment(centsInserted);
             // Assert
-            expect(refund).toEqual(centsInserted);
-        });
-        it("should disburse the sum of multiple payments", function () {
-            // Arrange
-            var processor = new payment_processor_1.PaymentProcessor();
-            var expectedRefund = 100;
-            // Act
-            processor.acceptPayment(25);
-            processor.acceptPayment(25);
-            processor.acceptPayment(25);
-            processor.acceptPayment(25);
-            var refund = processor.disburse();
-            // Assert
-            expect(refund).toEqual(expectedRefund);
+            expect(piggyBankMock.deposit).toHaveBeenCalledWith(centsInserted);
         });
     });
     describe("processPurchase", function () {
-        it("should disburse remainder after a purchase", function () {
+        it("should withdraw purchase price", function () {
             // Arrange
-            var processor = new payment_processor_1.PaymentProcessor();
-            processor.acceptPayment(75);
+            var price = 50;
+            piggyBankMock.withdraw;
             // Act
-            processor.processPurchase(50);
-            var refund = processor.disburse();
+            payProc.processPurchase(price);
             // Assert
-            expect(refund).toEqual(25);
+            expect(piggyBankMock.withdraw).toHaveBeenCalledWith(price);
         });
     });
     describe("isPaymentSufficient", function () {
         it("should be true if there are more than enough funds", function () {
             // Arrange
-            var processor = new payment_processor_1.PaymentProcessor();
+            var price = 50;
+            var coinsInserted = 75;
+            piggyBankMock.balance.and.returnValue(coinsInserted);
             // Act
-            processor.acceptPayment(75);
-            var check = processor.isPaymentSufficient(50);
+            var check = payProc.isPaymentSufficient(price);
             // Assert
             expect(check).toEqual(true);
         });
         it("should be true if there are exact funds", function () {
             // Arrange
-            var processor = new payment_processor_1.PaymentProcessor();
+            var price = 50;
+            var coinsInserted = 50;
+            piggyBankMock.balance.and.returnValue(coinsInserted);
             // Act
-            processor.acceptPayment(50);
-            var check = processor.isPaymentSufficient(50);
+            var check = payProc.isPaymentSufficient(price);
             // Assert
             expect(check).toEqual(true);
         });
         it("should be false if there are insufficient funds", function () {
             // Arrange
-            var processor = new payment_processor_1.PaymentProcessor();
+            var price = 50;
+            var coinsInserted = 25;
+            piggyBankMock.balance.and.returnValue(coinsInserted);
             // Act
-            processor.acceptPayment(25);
-            var check = processor.isPaymentSufficient(50);
+            var check = payProc.isPaymentSufficient(price);
             // Assert
             expect(check).toEqual(false);
         });

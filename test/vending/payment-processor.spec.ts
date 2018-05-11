@@ -1,88 +1,88 @@
 import { PaymentProcessor } from "../../lib/vending/payment-processor";
 
 describe("PaymentProcessor", () => {
+  let piggyBankMock;
+  let payProc;
+
+  beforeEach(done => {
+    piggyBankMock = jasmine.createSpyObj("piggyBank", [
+      "withdraw",
+      "deposit",
+      "balance"
+    ]);
+    payProc = new PaymentProcessor(piggyBankMock);
+    done();
+  });
+
   describe("disburse", () => {
-    it("should disburse nothing when no payment has been given", () => {
+    it("should disburse nothing when the piggyBank is empty", () => {
       // Arrange
-      const processor = new PaymentProcessor();
+      piggyBankMock.balance.and.returnValue(0);
       // Act
-      const refund = processor.disburse();
+      const refund = payProc.disburse();
       // Assert
       expect(refund).toEqual(0);
     });
-    it("should disburse nothing after the first disbursement", () => {
+    it("should disburse whatever amount is in the piggyBank", () => {
       // Arrange
-      const processor = new PaymentProcessor();
-      processor.acceptPayment(25);
-      processor.disburse();
+      const coinsInserted = 25;
+      piggyBankMock.balance.and.returnValue(coinsInserted);
       // Act
-      const refund = processor.disburse();
+      const refund = payProc.disburse();
       // Assert
-      expect(refund).toEqual(0);
+      expect(refund).toEqual(coinsInserted);
     });
   });
   describe("acceptPayment", () => {
-    it("should disburse all payment accepted", () => {
+    it("should send payment to the piggyBank", () => {
       // Arrange
-      const processor = new PaymentProcessor();
       const centsInserted = 25;
+      piggyBankMock.deposit;
       // Act
-      processor.acceptPayment(centsInserted);
-      const refund = processor.disburse();
+      payProc.acceptPayment(centsInserted);
       // Assert
-      expect(refund).toEqual(centsInserted);
-    });
-    it("should disburse the sum of multiple payments", () => {
-      // Arrange
-      const processor = new PaymentProcessor();
-      const expectedRefund = 100;
-      // Act
-      processor.acceptPayment(25);
-      processor.acceptPayment(25);
-      processor.acceptPayment(25);
-      processor.acceptPayment(25);
-      const refund = processor.disburse();
-      // Assert
-      expect(refund).toEqual(expectedRefund);
+      expect(piggyBankMock.deposit).toHaveBeenCalledWith(centsInserted);
     });
   });
   describe("processPurchase", () => {
-    it("should disburse remainder after a purchase", () => {
+    it("should withdraw purchase price", () => {
       // Arrange
-      const processor = new PaymentProcessor();
-      processor.acceptPayment(75);
+      const price = 50;
+      piggyBankMock.withdraw;
       // Act
-      processor.processPurchase(50);
-      const refund = processor.disburse();
+      payProc.processPurchase(price);
       // Assert
-      expect(refund).toEqual(25);
+      expect(piggyBankMock.withdraw).toHaveBeenCalledWith(price);
     });
   });
   describe("isPaymentSufficient", () => {
     it("should be true if there are more than enough funds", () => {
       // Arrange
-      const processor = new PaymentProcessor();
+      const price = 50;
+      const coinsInserted = 75;
+      piggyBankMock.balance.and.returnValue(coinsInserted);
       // Act
-      processor.acceptPayment(75);
-      const check = processor.isPaymentSufficient(50);
+      const check = payProc.isPaymentSufficient(price);
       // Assert
       expect(check).toEqual(true);
     });
     it("should be true if there are exact funds", () => {
       // Arrange
-      const processor = new PaymentProcessor();
+      const price = 50;
+      const coinsInserted = 50;
+      piggyBankMock.balance.and.returnValue(coinsInserted);
       // Act
-      processor.acceptPayment(50);
-      const check = processor.isPaymentSufficient(50);
+      const check = payProc.isPaymentSufficient(price);
       // Assert
       expect(check).toEqual(true);
     });
     it("should be false if there are insufficient funds", () => {
       // Arrange
-      const processor = new PaymentProcessor();
+      const price = 50;
+      const coinsInserted = 25;
+      piggyBankMock.balance.and.returnValue(coinsInserted);
       // Act
-      processor.acceptPayment(25);
-      const check = processor.isPaymentSufficient(50);
+      const check = payProc.isPaymentSufficient(price);
       // Assert
       expect(check).toEqual(false);
     });
