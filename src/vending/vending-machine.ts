@@ -1,6 +1,7 @@
 import { PaymentProcessor } from "./payment-processor";
 
 export class VendingMachine {
+  // @ts-ignore
   constructor(private payments = new PaymentProcessor()) {}
 
   releaseChange() {

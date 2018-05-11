@@ -26,7 +26,6 @@ describe("PaymentProcessor", function () {
             // Arrange
             var coinsInserted = 25;
             piggyBankMock.balance.and.returnValue(coinsInserted);
-            piggyBankMock.withdraw;
             // Act
             var refund = payProc.disburse();
             // Assert
@@ -38,7 +37,6 @@ describe("PaymentProcessor", function () {
         it("should send payment to the piggyBank", function () {
             // Arrange
             var centsInserted = 25;
-            piggyBankMock.deposit;
             // Act
             payProc.acceptPayment(centsInserted);
             // Assert
