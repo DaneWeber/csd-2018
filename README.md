@@ -223,6 +223,59 @@ Then I should receive the product
 * Maintainability.
 * Specificity of feedback.
 
+## Test Strategy
+
+1.  With an existing codebase, start from the top with WebDriver tests to provide smoke tests/sanity tests.
+2.  Don't add tests to terrible code. That's not "Timely." It's probably also next to impossible.
+3.  When you need to change code, first wrap the code in system/integration tests. Then, refactor, adding unit tests to the refactored code.
+4.  When adding new code, do TDD, writing more test code than production code.
+
+## Pair Programming
+
+* Techniques: ping-pong, remote, promiscuous, pomodoro
+* Station: flat desk, fast machine, 2 large monitors, 2 keyboards, 2 mice
+* Find the level of pairing that works for the people on the team, but try more.
+* Pairing is especially valuable for new team members, for complex problems, and for learning new technology.
+
+### Ping-pong
+
+1.  A writes a failing test
+2.  B writes code until the test passes
+3.  B writes a failing test
+4.  A writes code until the test passes
+
+## Code Quality
+
+### Code Smells
+
+* Not...
+
+### Clean Code
+
+1.  a
+2.  b
+3.  c
+4.  d
+5.  e
+6.  f
+7.  g
+8.  h
+9.  i
+10. j
+
+* Bonus: you clean code for yourself, your future self, and for your team.
+
+### Static Analysis
+
+* Fadi: https://www.sonarqube.org/
+* Instanbul for Code Coverage
+* TypeScript includes its own static analysis
+* JSLint, TSLint
+
+## Technical Debt
+
+* X
+
 ## Typescript/Javascript Notes
 
 * Jasmine - [https://jasmine.github.io/]
