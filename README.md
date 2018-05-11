@@ -203,6 +203,26 @@ Then I should receive the product
 5.  Scenario step passes
 6.  Next scenario step fails
 
+## WebDriver
+
+* Example took 1000x as long as the React shallow rendering tests.
+
+## Testing Triangle
+
+1.  Most: unit
+2.  Integration
+3.  System
+4.  Functional/Acceptance
+5.  UI/WebDriver
+6.  Least: Explatory
+
+### Why?
+
+* Feedback loop length.
+* Completeness of coverage.
+* Maintainability.
+* Specificity of feedback.
+
 ## Typescript/Javascript Notes
 
 * Jasmine - [https://jasmine.github.io/]
