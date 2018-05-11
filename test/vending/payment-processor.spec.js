@@ -26,10 +26,12 @@ describe("PaymentProcessor", function () {
             // Arrange
             var coinsInserted = 25;
             piggyBankMock.balance.and.returnValue(coinsInserted);
+            piggyBankMock.withdraw;
             // Act
             var refund = payProc.disburse();
             // Assert
             expect(refund).toEqual(coinsInserted);
+            expect(piggyBankMock.withdraw).toHaveBeenCalledWith(coinsInserted);
         });
     });
     describe("acceptPayment", function () {
@@ -47,7 +49,6 @@ describe("PaymentProcessor", function () {
         it("should withdraw purchase price", function () {
             // Arrange
             var price = 50;
-            piggyBankMock.withdraw;
             // Act
             payProc.processPurchase(price);
             // Assert

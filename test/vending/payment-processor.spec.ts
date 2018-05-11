@@ -31,13 +31,13 @@ describe("PaymentProcessor", () => {
       const refund = payProc.disburse();
       // Assert
       expect(refund).toEqual(coinsInserted);
+      expect(piggyBankMock.withdraw).toHaveBeenCalledWith(coinsInserted);
     });
   });
   describe("acceptPayment", () => {
     it("should send payment to the piggyBank", () => {
       // Arrange
       const centsInserted = 25;
-      piggyBankMock.deposit;
       // Act
       payProc.acceptPayment(centsInserted);
       // Assert
@@ -48,7 +48,6 @@ describe("PaymentProcessor", () => {
     it("should withdraw purchase price", () => {
       // Arrange
       const price = 50;
-      piggyBankMock.withdraw;
       // Act
       payProc.processPurchase(price);
       // Assert
