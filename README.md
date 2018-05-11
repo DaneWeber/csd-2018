@@ -103,7 +103,7 @@ export class Mallard implements IFly {
 ### I -- Interface Segregation Principle
 
 * Split up interfaces so that clients can use a portion and combine as needed.
-* _Split into smaller interfaces._
+* _Split signatures (method calls) into smaller interfaces._
 
 ### D -- Dependency Inversion Principle
 
@@ -139,7 +139,30 @@ differentInvoice.print();
 4.  Fake Object - light-weight implementation (SQLite instead of Postgres).
 5.  Test Spy - reports back on what the code did.
 
-* Use a test double ('mock') when you need speed or ....
+* Use a test double ('mock') when you need speed or simplicity.
+
+## Integration/System Testing
+
+* _By definition, testing two or more classes is an Integration Test._
+* Integration Testing and System Testing and the same thing, just on a spectrum.
+* Mocking/spying is allowed but not necessary for Integration Tests.
+* Mock/spy when it's expensive, not as a hard and fast rule.
+* Still want it to be Repeatable, Self-Verifying, and Timely.
+* "Fast" is still good, with the understanding that it won't be as fast.
+* "Isolated" is obviously violated, but keep in mind the boundaries of each test.
+
+### Example Database Approach
+
+1.  Create database (on demand, scripted, maybe a "Fake"/lightweight stand-in)
+2.  Load seed data (the static data expected by the application)
+3.  Load test data (minimal set to support tests)
+4.  Open transaction (per test so they can be repeatable in any order)
+5.  Run test
+6.  Retrieve data
+7.  Assert
+8.  Rollback transaction (opened above)
+9.  Delete data
+10. Destroy database
 
 ## Typescript/Javascript Notes
 
