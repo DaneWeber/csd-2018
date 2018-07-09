@@ -66,6 +66,10 @@ _Recommended reading: Clean Code_
 | I   | S   | P   | Interface Segregation Principle |
 | D   | I   | P   | Dependency Inversion Principle  |
 
+Learning Order: SRP < ISP < OCP < DIP < LSP (SIODL)
+
+Also, the order of difficulty understanding and difficulty fixing.
+
 ### S -- Single Responsibility Principle
 
 * Only one (business) reason for a class to change.
@@ -112,6 +116,7 @@ export class Mallard implements IFly {
 ### I -- Interface Segregation Principle
 
 * Split up interfaces so that clients can use a portion and combine as needed.
+* Smell: "unimplemented" methods.
 * _Split signatures (method calls) into smaller interfaces._
 
 ### D -- Dependency Inversion Principle
