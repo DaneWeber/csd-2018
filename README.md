@@ -15,12 +15,10 @@
 
 ## Testing Quadrant
 
-|                     |                         | Business Facing   |                                   |                  |
-| ------------------- | ----------------------- | ----------------- | --------------------------------- | ---------------- |
-|                     | Functional, Acceptance  | ^^                | Showcases, Exploratory, Usability |                  |
-| Support Programming | - - - - - - - - - - - - | ++                | - - - - - - - - - - - - - - - - - | Critique Product |
-|                     | Unit, Component, System | vv                | Performance, Security             |                  |
-|                     |                         | Technology Facing |                                   |                  |
+|                                      | Support Programming (Proof) "Did we build it right?" | Critique Product (critique) "Are we building the right thing?" |
+| ------------------------------------ | ---------------------------------------------------- | -------------------------------------------------------------- |
+| User-, Business-, Stakeholder-Facing | Functional, Acceptance, API                          | Showcases, Exploratory, Usability, Accessibility               |
+| Technology-Facing                    | Unit, Integration, Component, System                 | Performance, Load, Stress, Security, Resilience                |
 
 ## Unit Testing
 
