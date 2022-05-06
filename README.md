@@ -231,7 +231,7 @@ Then I should receive the product
 1.  With an existing codebase, start from the top with WebDriver tests to provide smoke tests/sanity tests.
 2.  Don't add tests to terrible code. That's not "Timely." It's probably also next to impossible.
 3.  When you need to change code, first wrap the code in system/integration tests. Then, refactor, adding unit tests to the refactored code.
-4.  When adding new code, do TDD, writing more test code than production code.
+4.  When adding new code, do [TDD](#three-laws-of-tdd), writing more test code than production code.
 
 ## Pair Programming
 
